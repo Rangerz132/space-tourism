@@ -1,7 +1,7 @@
 import React from "react";
 
-const TechnologyPage = () => {
+const TechnologiesPage = () => {
   return <div>TechnologyPage</div>;
 };
 
-export default TechnologyPage;
+export default TechnologiesPage;

@@ -19,12 +19,16 @@ const Destination = (props: {
       <div className="flex flex-col space-y-6">
         {/** Stat Distance */}
         <div className="destination-stat-container">
-          <h5 className="text-light-blue">avg. distance</h5>
+          <h5 className="text-light-blue font-barlow-condensed tracking-widest">
+            avg. distance
+          </h5>
           <h4 className="text-white">{props.distance}</h4>
         </div>
         {/** Stat Travel Time */}
         <div className="destination-stat-container">
-          <h5 className="text-light-blue">est. travel time</h5>
+          <h5 className="text-light-blue font-barlow-condensed tracking-widest">
+            est. travel time
+          </h5>
           <h4 className="text-white">{props.travelTime}</h4>
         </div>
       </div>
