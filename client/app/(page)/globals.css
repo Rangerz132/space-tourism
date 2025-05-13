@@ -8,6 +8,8 @@
   --font-bellefair: "Bellefair", serif;
   --font-barlow: "Barlow", sans-serif;
   --font-barlow-condensed: "Barlow Condensed", sans-serif;
+
+  --color-dark-blue: #0b0d17;
   --color-light-blue: #d0d6f9;
   --color-grey: #979797;
 }
@@ -18,7 +20,7 @@
   }
 
   h1 {
-    @apply text-7xl;
+    @apply text-8xl;
   }
 
   h2 {
@@ -38,7 +40,7 @@
   }
 
   p {
-    @apply font-barlow text-base;
+    @apply font-barlow text-base  leading-8;
   }
 }
 

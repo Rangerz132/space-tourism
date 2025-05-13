@@ -38,12 +38,10 @@ const DestinationsPage = () => {
     };
 
     getDestination();
-
-    console.log(destinations);
   }, []);
 
   return (
-    <div className="main-container ">
+    <div className="main-container">
       {destinations.length > 0 && (
         <div className="flex flex-col justify-center space-y-12">
           {/** Destination Image */}
