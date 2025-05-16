@@ -52,4 +52,8 @@
   .destination-stat-container {
     @apply flex flex-col space-y-1 uppercase text-center;
   }
+
+  .page-content-container {
+    @apply py-30;
+  }
 }
