@@ -59,7 +59,7 @@ const CrewPage = () => {
   return (
     <div
       style={{ backgroundImage: `url(${backgroundPage})` }}
-      className="bg-cover bg-no-repeat bg-top bg-dark-blue"
+      className="bg-cover bg-no-repeat bg-top "
     >
       <div className="main-container">
         <div className="flex flex-col items-center justify-center space-y-16 page-content-container">
