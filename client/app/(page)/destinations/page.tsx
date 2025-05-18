@@ -10,8 +10,7 @@ export type DestinationType = {
   description: string;
   averageDistance: string;
   travelTime: string;
-  imageSmall: string;
-  imageLarge: string;
+  image: string;
 };
 
 const DestinationsPage = () => {
@@ -32,8 +31,7 @@ const DestinationsPage = () => {
             description: destination.acf.description,
             averageDistance: destination.acf.average_distance,
             travelTime: destination.acf.travel_time,
-            imageSmall: destination.acf.image_small,
-            imageLarge: destination.acf.image_large,
+            image: destination.acf.image,
           })
         );
 
@@ -55,7 +53,7 @@ const DestinationsPage = () => {
 
         const data = result.data;
 
-        setBackgroundPage(data[0].acf.image_small);
+        setBackgroundPage(data[0].acf.image);
       } catch (error) {
         console.log(
           "An error occured when fetching the background page : ",
@@ -69,47 +67,55 @@ const DestinationsPage = () => {
   return (
     <div
       style={{ backgroundImage: `url(${backgroundPage})` }}
-      className="bg-cover bg-no-repeat bg-top bg-dark-blue"
+      className="bg-cover bg-no-repeat bg-top min-h-[100dvh]"
     >
-      <div className="main-container">
-        {destinations.length > 0 && (
-          <div className="flex flex-col justify-center items-center space-y-12 page-content-container ">
-            {/** Page Title */}
-            <PageTitle number={"01"} title={"Pick your destination"} />
-            {/** Destination Image */}
-            <div>
-              <Image
-                src={destinations[destinationIndex].imageSmall}
-                width={200}
-                height={200}
-                alt={destinations[destinationIndex].name}
-              />
-            </div>
-            {/** Destination Navigation */}
-            <div className="flex flex-row items-center justify-center space-x-6">
-              {destinations.map((destination, index) => (
-                <div
-                  onClick={() => setDestinationIndex(index)}
-                  key={destination.name}
-                  className={`text-light-blue uppercase border-b-2 font-barlow-condensed tracking-widest cursor-pointer ${
-                    index === destinationIndex
-                      ? "border-b-white"
-                      : "border-b-transparent"
-                  }`}
-                >
-                  {destination.name}
+      <div className="page-content-container ">
+        <div className="main-container pb-12">
+          {/** Page Title */}
+          <PageTitle number={"01"} title={"Pick your destination"} />
+        </div>
+        {/** Destinations */}
+        <div className="second-container">
+          {destinations.length > 0 && (
+            <div className="flex flex-col justify-center items-center space-y-12 lg:flex-row lg:space-x-20 lg:space-y-0">
+              {/** Destination Image */}
+              <div className="w-full flex items-center justify-center lg:flex-1">
+                <Image
+                  src={destinations[destinationIndex].image}
+                  width={200}
+                  height={200}
+                  alt={destinations[destinationIndex].name}
+                  className="sm:w-[40%] aspect-square lg:w-[80%]"
+                />
+              </div>
+              <div className="md:flex-1 space-y-12">
+                {/** Destination Navigation */}
+                <div className="flex flex-row items-center justify-center space-x-6 lg:justify-start">
+                  {destinations.map((destination, index) => (
+                    <div
+                      onClick={() => setDestinationIndex(index)}
+                      key={destination.name}
+                      className={`text-light-blue uppercase border-b-2 font-barlow-condensed tracking-widest cursor-pointer ${
+                        index === destinationIndex
+                          ? "border-b-white"
+                          : "border-b-transparent"
+                      }`}
+                    >
+                      {destination.name}
+                    </div>
+                  ))}
                 </div>
-              ))}
+                {/** Destination Content */}
+                <Destination
+                  name={destinations[destinationIndex].name}
+                  description={destinations[destinationIndex].description}
+                  distance={destinations[destinationIndex].averageDistance}
+                  travelTime={destinations[destinationIndex].travelTime}
+                />
+              </div>
             </div>
-            {/** Destination Content */}
-            <Destination
-              name={destinations[destinationIndex].name}
-              description={destinations[destinationIndex].description}
-              distance={destinations[destinationIndex].averageDistance}
-              travelTime={destinations[destinationIndex].travelTime}
-            />
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

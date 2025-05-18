@@ -14,7 +14,7 @@ export default function Home() {
         );
 
         const data = result.data;
-        setBackgroundPage(data[0].acf.image_small);
+        setBackgroundPage(data[0].acf.image);
       } catch (error) {
         console.log(
           "An error occured when fetching the background page : ",
@@ -30,15 +30,17 @@ export default function Home() {
       style={{ backgroundImage: `url(${backgroundPage})` }}
       className="bg-cover bg-no-repeat bg-bottom bg-dark-blue"
     >
-      <div className="main-container flex items-center justify-center min-h-[100dvh] page-content-container">
-        <div className="flex flex-col space-y-20 justify-center items-center ">
+      <div className="page-content-container min-h-[100dvh] flex items-center justify-center lg:items-end">
+        <div className="second-container flex flex-col space-y-20 justify-center items-center lg:space-y-0 lg:flex-row ">
           {/** Content */}
-          <div className="flex flex-col items-center justify-center space-y-8 text-center">
-            <h5 className="text-light-blue font-barlow-condensed tracking-widest uppercase">
+          <div className="flex flex-col items-center justify-center space-y-8 text-center lg:text-left lg:items-start lg:justify-start lg:flex-1">
+            <h5 className="text-light-blue font-barlow-condensed tracking-widest uppercase lg:text-left">
               So, you want to travel to
             </h5>
-            <h1 className="text-white font-bellefair uppercase">Space</h1>
-            <p className="font-barlow text-light-blue">
+            <h1 className="text-white font-bellefair uppercase lg:text-left">
+              Space
+            </h1>
+            <p className="font-barlow text-light-blue lg:text-left">
               Let’s face it; if you want to go to space, you might as well
               genuinely go to outer space and not hover kind of on the edge of
               it. Well sit back, and relax because we’ll give you a truly out of
@@ -46,12 +48,14 @@ export default function Home() {
             </p>
           </div>
           {/** Explore Button */}
-          <Link
-            className="rounded-full w-40 aspect-square bg-white text-dark-blue uppercase font-bellefair flex items-center justify-center cursor-pointer text-2xl"
-            href={"/destinations"}
-          >
-            Explore
-          </Link>
+          <div className="lg:flex-1 flex items-center  justify-center lg:justify-end lg:items-end w-full">
+            <Link
+              className="rounded-full w-[50%] min-w-[140px] aspect-square bg-white text-dark-blue uppercase font-bellefair flex items-center justify-center cursor-pointer text-2xl sm:text-3xl lg:w-[40%]"
+              href={"/destinations"}
+            >
+              Explore
+            </Link>
+          </div>
         </div>
       </div>
     </div>

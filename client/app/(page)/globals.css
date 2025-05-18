@@ -20,11 +20,11 @@
   }
 
   h1 {
-    @apply text-8xl;
+    @apply text-8xl sm:text-[144px];
   }
 
   h2 {
-    @apply text-6xl;
+    @apply text-6xl sm:text-[80px];
   }
 
   h3 {
@@ -32,11 +32,11 @@
   }
 
   h4 {
-    @apply text-3xl;
+    @apply text-3xl sm:text-[40px];
   }
 
   h5 {
-    @apply text-base;
+    @apply text-base sm:text-2xl;
   }
 
   p {
@@ -46,14 +46,26 @@
 
 @layer components {
   .main-container {
-    @apply w-full max-w-[1280px] mx-auto px-4;
-  }
-
-  .destination-stat-container {
-    @apply flex flex-col space-y-1 uppercase text-center;
+    @apply w-full  mx-auto px-6 lg:px-24;
   }
 
   .page-content-container {
     @apply py-30;
+  }
+
+  .second-container {
+    @apply mx-auto px-6 sm:px-24 max-w-[1640px];
+  }
+
+  .destination-stat-container {
+    @apply flex flex-col space-y-1 uppercase text-center sm:space-y-4 lg:text-left;
+  }
+
+  .destination-stat-container h5 {
+    @apply sm:text-sm;
+  }
+
+  .destination-stat-container h4 {
+    @apply sm:text-4xl;
   }
 }

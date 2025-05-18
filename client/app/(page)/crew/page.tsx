@@ -23,8 +23,7 @@ const CrewPage = () => {
           name: crewMember.acf.name,
           role: crewMember.acf.role,
           biography: crewMember.acf.biography,
-          imageSmall: crewMember.acf.image_small,
-          imageLarge: crewMember.acf.image_large,
+          image: crewMember.acf.image,
         }));
 
         setCrew(formatedCrewList);
@@ -45,7 +44,7 @@ const CrewPage = () => {
 
         const data = result.data;
 
-        setBackgroundPage(data[0].acf.image_small);
+        setBackgroundPage(data[0].acf.image);
       } catch (error) {
         console.log(
           "An error occured when fetching the background page : ",
@@ -59,7 +58,7 @@ const CrewPage = () => {
   return (
     <div
       style={{ backgroundImage: `url(${backgroundPage})` }}
-      className="bg-cover bg-no-repeat bg-top "
+      className="bg-cover bg-no-repeat bg-top min-h-[100dvh]"
     >
       <div className="main-container">
         <div className="flex flex-col items-center justify-center space-y-16 page-content-container">
@@ -86,7 +85,7 @@ const CrewPage = () => {
             {crew.length > 0 && (
               <Image
                 className="w-[60vw]"
-                src={crew[crewIndex].imageSmall}
+                src={crew[crewIndex].image}
                 width={200}
                 height={200}
                 alt={crew[crewIndex].name}

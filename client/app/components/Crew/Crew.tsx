@@ -4,8 +4,7 @@ export type CrewType = {
   name: string;
   role: string;
   biography: string;
-  imageSmall: string;
-  imageLarge: string;
+  image: string;
 };
 const Crew = (props: { crew: CrewType }) => {
   return (
