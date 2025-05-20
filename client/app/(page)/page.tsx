@@ -30,8 +30,8 @@ export default function Home() {
       style={{ backgroundImage: `url(${backgroundPage})` }}
       className="bg-cover bg-no-repeat bg-bottom bg-dark-blue"
     >
-      <div className="page-content-container min-h-[100dvh] flex items-center justify-center lg:items-end">
-        <div className="second-container flex flex-col space-y-20 justify-center items-center lg:space-y-0 lg:flex-row ">
+      <div className="min-h-[calc(100dvh)] flex items-center justify-center lg:items-end lg:py-30">
+        <div className="second-container flex flex-col space-y-12 justify-center items-center lg:space-y-0 lg:flex-row pt-[96px]">
           {/** Content */}
           <div className="flex flex-col items-center justify-center space-y-8 text-center lg:text-left lg:items-start lg:justify-start lg:flex-1">
             <h5 className="text-light-blue font-barlow-condensed tracking-widest uppercase lg:text-left">

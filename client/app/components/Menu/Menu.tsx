@@ -3,8 +3,8 @@ import MenuItem from "./MenuItem";
 
 const Menu = () => {
   return (
-    <div className="w-full">
-      <ul className="flex flex-col space-y-6 ">
+    <div className="w-full ">
+      <ul className="flex flex-col space-y-6 sm:flex-row sm:space-y-0 sm:space-x-6 lg:space-x-12">
         <li>
           <MenuItem id={"00"} path={"/"} name={"Home"} />
         </li>
