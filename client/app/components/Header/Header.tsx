@@ -31,7 +31,8 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="fixed sm:w-[85%] lg:w-[50%] bg-white/5 h-20 top-0 right-0 pointer-events-none "></div>
+        {/** Menu Background */}
+        <div className="fixed sm:w-[85%] lg:w-[50%] bg-white/5 h-20 top-0 right-0 pointer-events-none backdrop-blur-md -z-1"></div>
       </div>
     </div>
   );

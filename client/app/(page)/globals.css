@@ -40,7 +40,7 @@
   }
 
   p {
-    @apply font-barlow text-base  leading-8;
+    @apply font-barlow text-base lg:text-[18px]  leading-8;
   }
 }
 
@@ -67,5 +67,9 @@
 
   .destination-stat-container h4 {
     @apply sm:text-4xl;
+  }
+
+  .section-content {
+    @apply sm:h-[760px] lg:h-[550px];
   }
 }

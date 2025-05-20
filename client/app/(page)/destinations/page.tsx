@@ -71,20 +71,20 @@ const DestinationsPage = () => {
     >
       <div className="min-h-[calc(100dvh)] flex flex-col items-center justify-center py-20 sm:py-0 ">
         <div className="pt-6 sm:pt-20">
-          <div className="main-container pb-12 lg:pb-20">
+          <div className="second-container pb-12 lg:pb-20">
             {/** Page Title */}
             <PageTitle number={"01"} title={"Pick your destination"} />
           </div>
           {/** Destinations */}
           <div className="second-container">
             {destinations.length > 0 && (
-              <div className="flex flex-col justify-center items-center space-y-20 lg:flex-row lg:space-x-12 lg:space-y-0">
+              <div className="flex flex-col justify-center items-center space-y-20 lg:flex-row lg:space-x-12 lg:space-y-0 section-content">
                 {/** Destination Image */}
                 <div className="w-full flex items-center justify-center lg:flex-1">
                   <Image
                     src={destinations[destinationIndex].image}
-                    width={200}
-                    height={200}
+                    width={600}
+                    height={600}
                     alt={destinations[destinationIndex].name}
                     className="sm:w-[40%] aspect-square lg:w-[80%]"
                   />

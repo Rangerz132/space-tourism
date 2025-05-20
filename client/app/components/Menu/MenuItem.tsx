@@ -22,8 +22,8 @@ const MenuItem = (props: { id: string; path: string; name: string }) => {
         onPointerLeave={() => setIsHover(false)}
         className={`flex flex-row items-center space-x-2 text-white font-barlow-condensed uppercase tracking-widest sm:py-6 relative `}
       >
-        <span className="font-bold ">{props.id}</span>
-        <p>{props.name}</p>
+        <span className="font-bold text-base">{props.id}</span>
+        <p className="text-base">{props.name}</p>
       </Link>
       {/** Border */}
       <div
