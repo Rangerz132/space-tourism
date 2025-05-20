@@ -16,16 +16,18 @@ const Sidebar = () => {
         menu ? "translate-x-[0]" : "translate-x-[100%]"
       }`}
     >
-      <div className="p-6 flex flex-col space-y-12">
+      <div className="flex flex-col space-y-12 pt-6">
         {/** Close Button */}
-        <div className="flex justify-end">
+        <div className="flex justify-end pr-6">
           <BiX
             onClick={handleCloseButtonClick}
             className="text-light-blue w-10 h-10 cursor-pointer"
           />
         </div>
         {/** Menu List */}
-        <Menu />
+        <div className="pl-6">
+          <Menu />
+        </div>
       </div>
     </div>
   );
