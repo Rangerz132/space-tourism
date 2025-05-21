@@ -48,13 +48,11 @@ export const animatePageBackground = () => {
   const backgrounds = document.getElementsByClassName("bg");
   if (!backgrounds.length) return;
 
-  const background = backgrounds[0];
-
   const handleMouseMove = (e: MouseEvent) => {
     const x = (e.clientX / window.innerWidth - 0.1) * 100;
     const y = (e.clientY / window.innerHeight - 0.1) * 100;
 
-    gsap.to(background, {
+    gsap.to(backgrounds, {
       backgroundPosition: `${5 + x * 0.1}% ${5 + y * 0.1}%`,
       duration: 2,
       ease: "power2.out",
@@ -66,4 +64,100 @@ export const animatePageBackground = () => {
   return () => {
     document.removeEventListener("mousemove", handleMouseMove);
   };
+};
+
+export const animateInVerticalElement = (
+  query: string,
+  duration: number,
+  delay: number
+): Promise<void> => {
+  return new Promise((resolve) => {
+    const elements = gsap.utils.toArray<HTMLElement>(query);
+    const totalDuration = duration;
+    const totalDelayWindow = delay;
+    const step = totalDelayWindow / elements.length;
+
+    const tl = gsap.timeline({ onComplete: resolve });
+
+    elements.forEach((element, index) => {
+      const delay = index * step;
+      const individualDuration = totalDuration - delay;
+
+      tl.fromTo(
+        element,
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: individualDuration,
+          ease: "power2.out",
+        },
+        delay
+      );
+    });
+  });
+};
+
+export const animateOutVerticalElement = (
+  query: string,
+  duration: number,
+  delay: number
+): Promise<void> => {
+  return new Promise((resolve) => {
+    const elements = gsap.utils.toArray<HTMLElement>(query);
+    const totalDuration = duration;
+    const totalDelayWindow = delay;
+    const step = totalDelayWindow / elements.length;
+
+    const tl = gsap.timeline({ onComplete: resolve });
+
+    elements.forEach((element, index) => {
+      const delay = index * step;
+      const individualDuration = totalDuration - delay;
+
+      tl.fromTo(
+        element,
+        { y: 0, opacity: 1 },
+        {
+          y: -20,
+          opacity: 0,
+          duration: individualDuration,
+          ease: "power2.out",
+        },
+        delay
+      );
+    });
+  });
+};
+
+export const animateInHorizontalElement = (
+  query: string,
+  duration: number,
+  delay: number
+): Promise<void> => {
+  return new Promise((resolve) => {
+    const elements = gsap.utils.toArray<HTMLElement>(query);
+    const totalDuration = duration;
+    const totalDelayWindow = delay;
+    const step = totalDelayWindow / elements.length;
+
+    const tl = gsap.timeline({ onComplete: resolve });
+
+    elements.forEach((element, index) => {
+      const delay = index * step;
+      const individualDuration = totalDuration - delay;
+
+      tl.fromTo(
+        element,
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: individualDuration,
+          ease: "power2.out",
+        },
+        delay
+      );
+    });
+  });
 };
