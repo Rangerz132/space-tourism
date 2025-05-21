@@ -1,40 +1,23 @@
-"use client";
-
 import axios from "axios";
-import { useEffect, useState } from "react";
+
 import ExploreButton from "../components/Explore/ExploreButton";
-import { animatePageBackground } from "../utils/animations";
-import gsap from "gsap";
+import HomeSection, {
+  HeroSectionType,
+} from "../components/HomeSection/HomeSection";
 
-export default function Home() {
-  const [backgroundPage, setBackgroundPage] = useState<string>("");
-  useEffect(() => {
-    const fetchBackground = async () => {
-      try {
-        const result = await axios.get(
-          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/pages?slug=home`
-        );
+export default async function Home() {
+  const result = await axios.get(
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/pages?slug=home`
+  );
 
-        const data = result.data;
-        setBackgroundPage(data[0].acf.image);
-      } catch (error) {
-        console.log(
-          "An error occured when fetching the background page : ",
-          error
-        );
-      }
-    };
-    fetchBackground();
-  }, []);
+  const data = result.data[0];
 
-  useEffect(() => {
-    const cleanup = animatePageBackground();
-    return cleanup;
-  }, []);
-
-  useEffect(() => {
-    animateHomeContent();
-  }, []);
+  const backgroundPage = data.acf.image;
+  const homeContent: HeroSectionType = {
+    subtitle: data.acf.subtitle || "",
+    title: data.acf.title || "",
+    content: data.acf.content || "",
+  };
 
   return (
     <div
@@ -44,20 +27,7 @@ export default function Home() {
       <div className="min-h-[calc(100dvh)] flex items-center justify-center lg:items-end lg:py-30">
         <div className="second-container flex flex-col space-y-12 justify-center items-center lg:space-y-0 lg:flex-row pt-[80px]">
           {/** Content */}
-          <div className="flex flex-col items-center justify-center space-y-8 text-center lg:text-left lg:items-start lg:justify-start lg:flex-1">
-            <h5 className="text-light-blue  uppercase lg:text-left font-saira-condensed tracking-wide-4 home-content">
-              So, you want to travel to
-            </h5>
-            <h1 className="text-white font-bellefair uppercase lg:text-left home-content">
-              Space
-            </h1>
-            <p className="font-barlow text-light-blue lg:text-left home-content">
-              Let’s face it; if you want to go to space, you might as well
-              genuinely go to outer space and not hover kind of on the edge of
-              it. Well sit back, and relax because we’ll give you a truly out of
-              this world experience!
-            </p>
-          </div>
+          <HomeSection data={homeContent} />
           {/** Explore Button */}
           <ExploreButton />
         </div>
@@ -65,18 +35,3 @@ export default function Home() {
     </div>
   );
 }
-
-const animateHomeContent = () => {
-  gsap.fromTo(
-    ".home-content",
-    { duration: 0, y: 20, opacity: 0, ease: "sine.out" },
-    {
-      duration: 1,
-      y: 0,
-      opacity: 1,
-      delay: 0.5,
-      stagger: 0.2,
-      ease: "sine.out",
-    }
-  );
-};
