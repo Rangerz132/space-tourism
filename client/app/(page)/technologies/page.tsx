@@ -7,6 +7,7 @@ import Image from "next/image";
 import Technology, {
   TechnologyType,
 } from "../../components/Technology/Technology";
+import TechnologyNavigation from "../../components/Technology/TechnologyNavigation";
 
 const TechnologiesPage = () => {
   const [technologies, setTechnologies] = useState<TechnologyType[]>([]);
@@ -83,22 +84,16 @@ const TechnologiesPage = () => {
 
               {/* Main content with navigation and image */}
               <div className="flex flex-col lg:flex-row items-start w-full relative ">
-                {/* Left: Navigation + Technology content */}
                 <div className="second-container lg:flex lg:justify-start lg:items-center lg:space-x-12 lg:flex-1">
                   {/* Navigation */}
                   <div className="flex flex-row space-x-6 items-center justify-center lg:flex-col lg:space-x-0 lg:space-y-6 pb-12 lg:pb-0 ">
                     {technologies.map((_, index) => (
-                      <div
+                      <TechnologyNavigation
                         key={index}
-                        className={`rounded-full border border-white/25 aspect-square cursor-pointer w-12 h-12 flex items-center justify-center transition-all duration-300 sm:text-2xl sm:w-16 sm:h-16 ${
-                          index === technologyIndex
-                            ? "text-dark-blue bg-white"
-                            : "text-white bg-transparent"
-                        }`}
+                        index={index}
+                        currentIndex={technologyIndex}
                         onClick={() => setTechnologyIndex(index)}
-                      >
-                        {index}
-                      </div>
+                      />
                     ))}
                   </div>
 
@@ -107,7 +102,7 @@ const TechnologiesPage = () => {
                     <Technology technology={technologies[technologyIndex]} />
                   </div>
                 </div>
-                {/* Right: Image touching screen edge */}
+                {/* Tehcnology Image Large Screen */}
                 <div className="hidden lg:flex absolute right-0 top-1/2 -translate-y-[50%] w-[30%]">
                   <Image
                     src={technologies[technologyIndex].image}

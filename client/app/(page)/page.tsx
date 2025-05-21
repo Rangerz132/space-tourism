@@ -34,7 +34,7 @@ export default function Home() {
         <div className="second-container flex flex-col space-y-12 justify-center items-center lg:space-y-0 lg:flex-row pt-[80px]">
           {/** Content */}
           <div className="flex flex-col items-center justify-center space-y-8 text-center lg:text-left lg:items-start lg:justify-start lg:flex-1">
-            <h5 className="text-light-blue font-barlow-condensed tracking-widest uppercase lg:text-left">
+            <h5 className="text-light-blue  uppercase lg:text-left font-saira-condensed tracking-wide-4">
               So, you want to travel to
             </h5>
             <h1 className="text-white font-bellefair uppercase lg:text-left">

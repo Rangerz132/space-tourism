@@ -19,14 +19,14 @@ const Destination = (props: {
       <div className="flex flex-col items-center justify-center space-y-6 sm:flex-row sm:space-y-0 sm:space-x-6 ">
         {/** Stat Distance */}
         <div className="destination-stat-container sm:flex-1">
-          <h5 className="text-light-blue font-barlow-condensed tracking-widest">
+          <h5 className="text-light-blue font-saira-condensed tracking-wide-4">
             avg. distance
           </h5>
           <h4 className="text-white">{props.distance}</h4>
         </div>
         {/** Stat Travel Time */}
         <div className="destination-stat-container sm:flex-1">
-          <h5 className="text-light-blue font-barlow-condensed tracking-widest ">
+          <h5 className="text-light-blue font-saira-condensed tracking-wide-4 ">
             est. travel time
           </h5>
           <h4 className="text-white">{props.travelTime}</h4>

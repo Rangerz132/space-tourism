@@ -4,6 +4,7 @@ import Destination from "../../components/Destination/Destination";
 import axios from "axios";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import Image from "next/image";
+import DestinationNavigation from "../../components/Destination/DestinationNavigation";
 
 export type DestinationType = {
   name: string;
@@ -93,17 +94,13 @@ const DestinationsPage = () => {
                   {/** Destination Navigation */}
                   <div className="flex flex-row items-center justify-center space-x-6 lg:justify-start">
                     {destinations.map((destination, index) => (
-                      <div
+                      <DestinationNavigation
+                        key={index}
+                        index={index}
+                        name={destination.name}
+                        currentIndex={destinationIndex}
                         onClick={() => setDestinationIndex(index)}
-                        key={destination.name}
-                        className={`text-light-blue uppercase border-b-2 font-barlow-condensed tracking-widest cursor-pointer ${
-                          index === destinationIndex
-                            ? "border-b-white"
-                            : "border-b-transparent"
-                        }`}
-                      >
-                        {destination.name}
-                      </div>
+                      />
                     ))}
                   </div>
                   {/** Destination Content */}
