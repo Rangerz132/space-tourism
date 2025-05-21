@@ -15,7 +15,7 @@ const CrewPage = () => {
     const fetchCrew = async () => {
       try {
         const result = await axios.get(
-          "http://localhost:8080/wp-json/wp/v2/crew"
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/crew`
         );
 
         const data = result.data;
@@ -40,7 +40,7 @@ const CrewPage = () => {
     const fetchBackground = async () => {
       try {
         const result = await axios.get(
-          "http://localhost:8080/wp-json/wp/v2/pages?slug=crew"
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/pages?slug=crew`
         );
 
         const data = result.data;

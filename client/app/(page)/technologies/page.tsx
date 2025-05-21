@@ -19,8 +19,9 @@ const TechnologiesPage = () => {
     const fetchTechnologies = async () => {
       try {
         const result = await axios.get(
-          "http://localhost:8080/wp-json/wp/v2/technology"
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/technology`
         );
+
         const data = result.data;
 
         const formatedTechnologies = data.map((technology) => ({
@@ -41,7 +42,7 @@ const TechnologiesPage = () => {
     const fetchBackground = async () => {
       try {
         const result = await axios.get(
-          "http://localhost:8080/wp-json/wp/v2/pages?slug=technology"
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/pages?slug=technology`
         );
 
         const data = result.data;

@@ -12,7 +12,7 @@ export default function Home() {
     const fetchBackground = async () => {
       try {
         const result = await axios.get(
-          "http://localhost:8080/wp-json/wp/v2/pages?slug=home"
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/pages?slug=home`
         );
 
         const data = result.data;
@@ -70,6 +70,13 @@ const animateHomeContent = () => {
   gsap.fromTo(
     ".home-content",
     { duration: 0, y: 20, opacity: 0, ease: "sine.out" },
-    { duration: 1, y: 0, opacity: 1, stagger: 0.2, ease: "sine.out" }
+    {
+      duration: 1,
+      y: 0,
+      opacity: 1,
+      delay: 0.5,
+      stagger: 0.2,
+      ease: "sine.out",
+    }
   );
 };

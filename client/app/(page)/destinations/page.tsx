@@ -24,7 +24,7 @@ const DestinationsPage = () => {
     const getDestination = async () => {
       try {
         const result = await axios.get(
-          "http://localhost:8080/wp-json/wp/v2/destination"
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/destination`
         );
 
         const formattedDestinations: DestinationType[] = result.data.map(
@@ -50,7 +50,7 @@ const DestinationsPage = () => {
     const fetchBackground = async () => {
       try {
         const result = await axios.get(
-          "http://localhost:8080/wp-json/wp/v2/pages?slug=destination"
+          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/pages?slug=destination`
         );
 
         const data = result.data;
