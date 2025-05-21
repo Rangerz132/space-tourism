@@ -10,7 +10,7 @@ const TechnologyNavigation = (props: {
 
   return (
     <div
-      className={`rounded-full border border-white/25 aspect-square cursor-pointer w-12 h-12 flex items-center justify-center transition-all duration-300 sm:text-2xl sm:w-16 sm:h-16 ${
+      className={`rounded-full border border-white/25 aspect-square cursor-pointer w-12 h-12 flex items-center justify-center transition-all duration-500 sm:text-2xl sm:w-16 sm:h-16 font-barlow ${
         props.index === props.currentIndex || isHover
           ? "text-dark-blue bg-white"
           : "text-white bg-transparent"

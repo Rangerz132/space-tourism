@@ -12,7 +12,7 @@ const DestinationNavigation = (props: {
   return (
     <div
       key={props.index}
-      className={`text-light-blue uppercase pb-2 border-b font-saira-condensed tracking-wide-4 cursor-pointer transition-all duration-300 ${
+      className={`text-light-blue uppercase pb-2 border-b font-saira-condensed tracking-wide-4 cursor-pointer transition-all duration-500 ${
         props.index === props.currentIndex || isHover
           ? "border-b-white"
           : "border-b-transparent"

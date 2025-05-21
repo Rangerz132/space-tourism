@@ -5,6 +5,7 @@ import axios from "axios";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import Image from "next/image";
 import DestinationNavigation from "../../components/Destination/DestinationNavigation";
+import { animatePageBackground } from "../../utils/animations";
 
 export type DestinationType = {
   name: string;
@@ -65,10 +66,15 @@ const DestinationsPage = () => {
     fetchBackground();
   }, [backgroundPage]);
 
+  useEffect(() => {
+    const cleanup = animatePageBackground();
+    return cleanup;
+  }, []);
+
   return (
     <div
       style={{ backgroundImage: `url(${backgroundPage})` }}
-      className="bg-cover bg-no-repeat bg-top min-h-[100dvh]"
+      className="bg-cover bg-no-repeat  min-h-[100dvh] bg"
     >
       <div className="min-h-[calc(100dvh)] flex flex-col items-center justify-center py-20 sm:py-0 ">
         <div className="pt-6 sm:pt-20">

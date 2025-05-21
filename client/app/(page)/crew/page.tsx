@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Crew, { CrewType } from "../../components/Crew/Crew";
 import Image from "next/image";
 import PageTitle from "../../components/PageTitle/PageTitle";
+import { animatePageBackground } from "../../utils/animations";
 
 const CrewPage = () => {
   const [crew, setCrew] = useState<CrewType[]>([]);
@@ -55,10 +56,15 @@ const CrewPage = () => {
     fetchBackground();
   }, [backgroundPage]);
 
+  useEffect(() => {
+    const cleanup = animatePageBackground();
+    return cleanup;
+  }, []);
+
   return (
     <div
       style={{ backgroundImage: `url(${backgroundPage})` }}
-      className="bg-cover bg-no-repeat bg-top min-h-[100dvh]"
+      className="bg-cover bg-no-repeat min-h-[100dvh] bg"
     >
       <div className="min-h-[calc(100dvh)] flex flex-col items-center justify-center py-20 sm:py-0 ">
         <div className="pt-6 sm:pt-20">

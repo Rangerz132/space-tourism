@@ -1,8 +1,10 @@
 "use client";
 
 import axios from "axios";
-import Link from "next/link";
+
 import { useEffect, useState } from "react";
+import ExploreButton from "../components/Explore/ExploreButton";
+import { animatePageBackground } from "../utils/animations";
 
 export default function Home() {
   const [backgroundPage, setBackgroundPage] = useState<string>("");
@@ -25,10 +27,15 @@ export default function Home() {
     fetchBackground();
   }, []);
 
+  useEffect(() => {
+    const cleanup = animatePageBackground();
+    return cleanup;
+  }, []);
+
   return (
     <div
       style={{ backgroundImage: `url(${backgroundPage})` }}
-      className="bg-cover bg-no-repeat bg-bottom bg-dark-blue"
+      className="bg-cover bg-no-repeat  bg-dark-blue bg"
     >
       <div className="min-h-[calc(100dvh)] flex items-center justify-center lg:items-end lg:py-30">
         <div className="second-container flex flex-col space-y-12 justify-center items-center lg:space-y-0 lg:flex-row pt-[80px]">
@@ -48,14 +55,7 @@ export default function Home() {
             </p>
           </div>
           {/** Explore Button */}
-          <div className="lg:flex-1 flex items-center  justify-center lg:justify-end lg:items-end w-full">
-            <Link
-              className="rounded-full w-[50%] min-w-[140px] aspect-square bg-white text-dark-blue uppercase font-bellefair flex items-center justify-center cursor-pointer text-2xl sm:text-3xl lg:w-[40%]"
-              href={"/destinations"}
-            >
-              Explore
-            </Link>
-          </div>
+          <ExploreButton />
         </div>
       </div>
     </div>
