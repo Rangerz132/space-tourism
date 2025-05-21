@@ -63,7 +63,6 @@ export const animatePageBackground = () => {
 
   document.addEventListener("mousemove", handleMouseMove);
 
-  // Return a cleanup function to remove the listener if needed
   return () => {
     document.removeEventListener("mousemove", handleMouseMove);
   };

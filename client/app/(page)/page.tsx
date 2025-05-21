@@ -1,10 +1,10 @@
 "use client";
 
 import axios from "axios";
-
 import { useEffect, useState } from "react";
 import ExploreButton from "../components/Explore/ExploreButton";
 import { animatePageBackground } from "../utils/animations";
+import gsap from "gsap";
 
 export default function Home() {
   const [backgroundPage, setBackgroundPage] = useState<string>("");
@@ -32,6 +32,10 @@ export default function Home() {
     return cleanup;
   }, []);
 
+  useEffect(() => {
+    animateHomeContent();
+  }, []);
+
   return (
     <div
       style={{ backgroundImage: `url(${backgroundPage})` }}
@@ -41,13 +45,13 @@ export default function Home() {
         <div className="second-container flex flex-col space-y-12 justify-center items-center lg:space-y-0 lg:flex-row pt-[80px]">
           {/** Content */}
           <div className="flex flex-col items-center justify-center space-y-8 text-center lg:text-left lg:items-start lg:justify-start lg:flex-1">
-            <h5 className="text-light-blue  uppercase lg:text-left font-saira-condensed tracking-wide-4">
+            <h5 className="text-light-blue  uppercase lg:text-left font-saira-condensed tracking-wide-4 home-content">
               So, you want to travel to
             </h5>
-            <h1 className="text-white font-bellefair uppercase lg:text-left">
+            <h1 className="text-white font-bellefair uppercase lg:text-left home-content">
               Space
             </h1>
-            <p className="font-barlow text-light-blue lg:text-left">
+            <p className="font-barlow text-light-blue lg:text-left home-content">
               Let’s face it; if you want to go to space, you might as well
               genuinely go to outer space and not hover kind of on the edge of
               it. Well sit back, and relax because we’ll give you a truly out of
@@ -61,3 +65,11 @@ export default function Home() {
     </div>
   );
 }
+
+const animateHomeContent = () => {
+  gsap.fromTo(
+    ".home-content",
+    { duration: 0, y: 20, opacity: 0, ease: "sine.out" },
+    { duration: 1, y: 0, opacity: 1, stagger: 0.2, ease: "sine.out" }
+  );
+};
