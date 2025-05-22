@@ -7,6 +7,7 @@ import {
   animateInVerticalElement,
   animateOutVerticalElement,
 } from "../../utils/animations";
+import CrewNavigation from "./CrewNavigation";
 
 const CrewCarousel = (props: { crew: CrewType[] }) => {
   const [crewIndex, setCrewIndex] = useState<number>(0);
@@ -36,15 +37,12 @@ const CrewCarousel = (props: { crew: CrewType[] }) => {
         {props.crew.length > 0 && (
           <div className="flex flex-row items-center justify-center space-x-4 lg:space-x-8 lg:justify-start">
             {props.crew.map((crewMember, index) => (
-              <div
+              <CrewNavigation
                 key={crewMember.name}
-                className={`crew-navigation  h-2 lg:h-3 rounded-full cursor-pointer transition-all duration-300 ${
-                  index === crewIndex
-                    ? "bg-white w-4 lg:w-6"
-                    : "bg-white/20 w-2 lg:w-3"
-                }`}
+                index={index}
+                crewIndex={crewIndex}
                 onClick={() => handleCarouselOnChange(index)}
-              ></div>
+              />
             ))}
           </div>
         )}

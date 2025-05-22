@@ -9,7 +9,7 @@ const Header = () => {
   const { setMenu } = useMenuContext();
 
   return (
-    <div className="fixed w-full">
+    <div className="fixed w-full z-10">
       <div className="main-container relative">
         <div className="flex flex-row items-center justify-between py-6 sm:py-0">
           {/** Logo */}
