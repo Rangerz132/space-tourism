@@ -1,65 +1,24 @@
-"use client";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Crew, { CrewType } from "../../components/Crew/Crew";
-import Image from "next/image";
+import React from "react";
 import PageTitle from "../../components/PageTitle/PageTitle";
-import { animatePageBackground } from "../../utils/animations";
+import CrewCarousel from "../../components/Crew/CrewCarousel";
 
-const CrewPage = () => {
-  const [crew, setCrew] = useState<CrewType[]>([]);
-  const [crewIndex, setCrewIndex] = useState<number>(0);
-  const [backgroundPage, setBackgroundPage] = useState<string>("");
+export default async function CrewPage() {
+  const crewResult = await axios.get(
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/crew`
+  );
 
-  useEffect(() => {
-    const fetchCrew = async () => {
-      try {
-        const result = await axios.get(
-          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/crew`
-        );
+  const crewList = crewResult.data.map((crewMember) => ({
+    name: crewMember.acf.name,
+    role: crewMember.acf.role,
+    biography: crewMember.acf.biography,
+    image: crewMember.acf.image,
+  }));
 
-        const data = result.data;
-
-        const formatedCrewList = data.map((crewMember) => ({
-          name: crewMember.acf.name,
-          role: crewMember.acf.role,
-          biography: crewMember.acf.biography,
-          image: crewMember.acf.image,
-        }));
-
-        setCrew(formatedCrewList);
-      } catch (error) {
-        console.log("An error occured when fetching the crew list :", error);
-      }
-    };
-
-    fetchCrew();
-  }, []);
-
-  useEffect(() => {
-    const fetchBackground = async () => {
-      try {
-        const result = await axios.get(
-          `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/pages?slug=crew`
-        );
-
-        const data = result.data;
-
-        setBackgroundPage(data[0].acf.image);
-      } catch (error) {
-        console.log(
-          "An error occured when fetching the background page : ",
-          error
-        );
-      }
-    };
-    fetchBackground();
-  }, [backgroundPage]);
-
-  useEffect(() => {
-    const cleanup = animatePageBackground();
-    return cleanup;
-  }, []);
+  const pageResult = await axios.get(
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/pages?slug=crew`
+  );
+  const backgroundPage = pageResult.data[0].acf.image;
 
   return (
     <div
@@ -72,45 +31,10 @@ const CrewPage = () => {
             {/** Page Title */}
             <PageTitle number={"02"} title={"Meet your crew"} />
           </div>
-          <div className="flex flex-col items-center justify-center space-y-8 second-container lg:flex-row lg:justify-between  sm:space-y-0 section-content ">
-            <div className="flex-1 flex flex-col space-y-12 lg:space-y-30">
-              {/** Crew Details */}
-              {crew.length > 0 && <Crew crew={crew[crewIndex]} />}
-              {/** Crew navigation */}
-              {crew.length > 0 && (
-                <div className="flex flex-row items-center justify-center space-x-4 lg:space-x-8 lg:justify-start">
-                  {crew.map((crewMember, index) => (
-                    <div
-                      key={crewMember.name}
-                      className={` h-2 lg:h-3 rounded-full cursor-pointer transition-all duration-300 ${
-                        index === crewIndex
-                          ? "bg-white w-4 lg:w-6"
-                          : "bg-white/20 w-2 lg:w-3"
-                      }`}
-                      onClick={() => setCrewIndex(index)}
-                    ></div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/** Crew Image */}
-            <div className="flex-1 lg:flex lg:justify-end">
-              {crew.length > 0 && (
-                <Image
-                  className="w-[60vw] sm:w-[40vw] lg:w-[25vw]"
-                  src={crew[crewIndex].image}
-                  width={600}
-                  height={600}
-                  alt={crew[crewIndex].name}
-                />
-              )}
-            </div>
-          </div>
+          {/** Crew Carousel */}
+          <CrewCarousel crew={crewList} />
         </div>
       </div>
     </div>
   );
-};
-
-export default CrewPage;
+}

@@ -4,7 +4,7 @@ import axios from "axios";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import DestinationCarousel from "../../components/Destination/DestinationCarousel";
 
-export async function DestinationsPage() {
+export default async function DestinationsPage() {
   const pageResult = await axios.get(
     `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp/v2/pages?slug=destination`
   );
@@ -47,5 +47,3 @@ export async function DestinationsPage() {
     </div>
   );
 }
-
-export default DestinationsPage;
