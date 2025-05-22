@@ -46,4 +46,4 @@ Space Tourism is a sleek and modern web application built to simulate a futurist
 
 ## Media
 
-![](client/public/demo.mp4)
+![](client/public/demo.gif)
