@@ -5,7 +5,9 @@ import TechnologyNavigation from "./TechnologyNavigation";
 import Technology, { TechnologyType } from "./Technology";
 import {
   animateInVerticalElement,
+  animateInVerticalSwipeElement,
   animateOutVerticalElement,
+  animateOutVerticalSwipeElement,
 } from "../../utils/animations";
 
 const TechnologyCarousel = (props: { technologies: TechnologyType[] }) => {
@@ -13,18 +15,23 @@ const TechnologyCarousel = (props: { technologies: TechnologyType[] }) => {
 
   useEffect(() => {
     animateInVerticalElement(".technology-element", 1, 0.3);
+    animateOutVerticalSwipeElement(".technology-swipe-element", 1, 0.3);
   }, []);
 
   const handleCarouselOnChange = async (index: number) => {
     await Promise.all([
       animateOutVerticalElement(".technology-element", 1, 0.3),
+      animateInVerticalSwipeElement(".technology-swipe-element", 1, 0.3),
     ]);
 
     setTechnologyIndex(index);
 
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        Promise.all([animateInVerticalElement(".technology-element", 1, 0.3)]);
+        Promise.all([
+          animateInVerticalElement(".technology-element", 1, 0.3),
+          animateOutVerticalSwipeElement(".technology-swipe-element", 1, 0.3),
+        ]);
       });
     });
   };
@@ -38,8 +45,9 @@ const TechnologyCarousel = (props: { technologies: TechnologyType[] }) => {
           width={600}
           height={600}
           alt={props.technologies[technologyIndex].name}
-          className="w-full technology-element"
+          className="w-full"
         />
+        <div className="absolute bg-white h-0 w-full bottom-0 technology-swipe-element"></div>
       </div>
 
       {/* Main content with navigation and image */}
@@ -69,8 +77,9 @@ const TechnologyCarousel = (props: { technologies: TechnologyType[] }) => {
             width={600}
             height={600}
             alt={props.technologies[technologyIndex].name}
-            className="w-full h-auto object-contain technology-element"
+            className="w-full h-auto object-contain"
           />
+          <div className="absolute bg-white h-full w-full bottom-0 technology-swipe-element"></div>
         </div>
       </div>
     </div>

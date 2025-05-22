@@ -161,3 +161,65 @@ export const animateInHorizontalElement = (
     });
   });
 };
+
+export const animateInVerticalSwipeElement = (
+  query: string,
+  duration: number,
+  delay: number
+): Promise<void> => {
+  return new Promise((resolve) => {
+    const elements = gsap.utils.toArray<HTMLElement>(query);
+    const totalDuration = duration;
+    const totalDelayWindow = delay;
+    const step = totalDelayWindow / elements.length;
+
+    const tl = gsap.timeline({ onComplete: resolve });
+
+    elements.forEach((element, index) => {
+      const delay = index * step;
+      const individualDuration = totalDuration - delay;
+
+      tl.fromTo(
+        element,
+        { height: 0 },
+        {
+          height: "100%",
+          duration: individualDuration,
+          ease: "power2.out",
+        },
+        delay
+      );
+    });
+  });
+};
+
+export const animateOutVerticalSwipeElement = (
+  query: string,
+  duration: number,
+  delay: number
+): Promise<void> => {
+  return new Promise((resolve) => {
+    const elements = gsap.utils.toArray<HTMLElement>(query);
+    const totalDuration = duration;
+    const totalDelayWindow = delay;
+    const step = totalDelayWindow / elements.length;
+
+    const tl = gsap.timeline({ onComplete: resolve });
+
+    elements.forEach((element, index) => {
+      const delay = index * step;
+      const individualDuration = totalDuration - delay;
+
+      tl.fromTo(
+        element,
+        { height: "100%" },
+        {
+          height: 0,
+          duration: individualDuration,
+          ease: "power2.out",
+        },
+        delay
+      );
+    });
+  });
+};
